@@ -1,0 +1,20 @@
+.checkout{
+    display: flex;
+}
+
+.checkout__title > h2{
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(234, 237, 237);
+}
+
+.checkout__left{
+    width: 75%;
+}
+
+.checkout__left > img{
+    height: 100px;
+    object-fit: contain;
+    width: 100%;
+}
+
+
