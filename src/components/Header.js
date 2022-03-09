@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/Header.css';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../StateProvider';
+import { auth } from '../firebase';
 
 function Header() {
 
@@ -9,8 +10,13 @@ function Header() {
 
    const [{basket, user}] = useStateValue();
 
+   const logout = () => {
+     if (user) {
+       auth.signOut()
+     }
+   }
+
    console.log('ITEMS IN BASKET >>>', basket);
-   console.log('USER >>>', user.email);
 
     return (
         <nav className='header'>
@@ -24,9 +30,9 @@ function Header() {
         <div className='header__nav'>
 
           <Link className='header__link' to={!user && '/login'}>
-            <div className='header__option'>
-              <p className='header__optionLineOne'>Hello</p>
-              <p className='header__optionLineTwo'>Customer</p>
+            <div className='header__option' onClick={logout}>
+              <p className='header__optionLineOne'>Hello {user?.email}</p>
+              <p className='header__optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</p>
             </div>
           </Link>
 
